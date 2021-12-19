@@ -1,5 +1,5 @@
 require 'logger'
-require 'connection'
+require 'thinkific/connection'
 
 module Thinkific
   class Config

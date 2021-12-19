@@ -4,11 +4,12 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'httparty'
 
+
 require 'thinkific/version'
 require 'thinkific/exceptions'
 require 'thinkific/config'
 require 'thinkific/connection'
-require 'thinkific/oauth2'
+require 'thinkific/oauth'
 
 module Thinkific
   class Error < StandardError; end
@@ -20,8 +21,6 @@ module Thinkific
   def self.configure(config={})
     Thinkific::Config.configure(config)
   end
-
-  require 'thinkific/railtie' if defined?(Rails)
 end
 
 # Alias the module for those looking to use the stylized name Thinkific

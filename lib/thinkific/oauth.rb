@@ -1,4 +1,3 @@
-require 'thinkific/oauth2/version'
 require 'httparty'
 
 module Thinkific
