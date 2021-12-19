@@ -4,11 +4,11 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'httparty'
 
-require_relative 'thinkific/version'
-require_relative 'thinkific/oauth2/exceptions'
-require_relative 'thinkific/oauth2/config'
-require_relative 'thinkific/oauth2/connection'
-require_relative 'thinkific/oauth2'
+require 'thinkific/version'
+require 'thinkific/exceptions'
+require 'thinkific/config'
+require 'thinkific/connection'
+require 'thinkific/oauth2'
 
 module Thinkific
   class Error < StandardError; end
