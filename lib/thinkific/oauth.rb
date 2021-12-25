@@ -4,14 +4,16 @@ module Thinkific
   class Oauth < Connection
     include HTTParty
 
+    DEFAULT_OAUTH_HEADERS = {'Content-Type' => 'application/json'}
+
     class << self
-      def refresh(token, params={}, options={})
-        oauth_post(token_url, { grant_type: 'refresh_token', refresh_token: token }.merge(params),
+      def refresh(token, subdomain, params={}, options={})
+        oauth_post(token_url(subdomain), { grant_type: 'refresh_token', refresh_token: token }.merge(params),
           options)
       end
 
-      def create(code, params={}, options={})
-        oauth_post(token_url, { grant_type: 'authorization_code', code: code }.merge(params),
+      def create(code, subdomain, params={}, options={})
+        oauth_post(token_url(subdomain), { grant_type: 'authorization_code', code: code }.merge(params),
           options)
       end
 
@@ -23,7 +25,7 @@ module Thinkific
         "https://#{subdomain}.thinkific.com/oauth2/authorize?client_id=#{client_id}&response_type=code&redirect_uri=#{redirect_uri}&state=sdsdvvag"
       end
 
-      def token_url
+      def token_url(subdomain)
         token_url = "https://#{subdomain}.thinkific.com/oauth2/token"
       end
 
