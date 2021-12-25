@@ -1,7 +1,7 @@
 require 'httparty'
 
 module Thinkific
-  class Oauth2 < Connection
+  class Oauth < Connection
     include HTTParty
 
     class << self
@@ -20,7 +20,7 @@ module Thinkific
         redirect_uri = params[:redirect_uri] || Thinkific::Config.redirect_uri
         subdomain = params[:subdomain] || 'walletcard-test'
 
-        "https://#{subdomain}.thinkific.com/oauth2/authorize?client_id=#{client_id}&scope=code&redirect_uri=#{redirect_uri}&state=sdsdvvag"
+        "https://#{subdomain}.thinkific.com/oauth2/authorize?client_id=#{client_id}&response_type=code&redirect_uri=#{redirect_uri}&state=sdsdvvag"
       end
 
       def token_url
