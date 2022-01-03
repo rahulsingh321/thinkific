@@ -18,10 +18,10 @@ module Thinkific
       def authorize_url(params={})
         client_id = params[:client_id] || Thinkific::Config.client_id
         redirect_uri = params[:redirect_uri]
-        subdomain = params[:subdomain] || 'walletcard-test'
         state = Base64.encode64(params[:state])
 
-        "https://#{subdomain}.thinkific.com/oauth2/authorize?client_id=#{client_id}&response_type=code&redirect_uri=#{redirect_uri}&state=#{state}"
+        # Replace subdomain with user input
+        "https://subdomain.thinkific.com/oauth2/authorize?client_id=#{client_id}&response_type=code&redirect_uri=#{redirect_uri}&state=#{state}"
       end
 
       def token_url(subdomain)
