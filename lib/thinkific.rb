@@ -7,9 +7,11 @@ require 'httparty'
 
 require 'thinkific/version'
 require 'thinkific/exceptions'
+require 'thinkific/order'
 require 'thinkific/config'
 require 'thinkific/connection'
 require 'thinkific/oauth'
+
 
 module Thinkific
   class Error < StandardError; end

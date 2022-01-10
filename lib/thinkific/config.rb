@@ -4,12 +4,8 @@ require 'thinkific/connection'
 module Thinkific
   class Config
 
-    CONFIG_KEYS = [
-      :logger, :access_token, :client_id, :client_secret,
-      :redirect_uri, :read_timeout, :open_timeout
-    ]
-
     DEFAULT_LOGGER = Logger.new(nil)
+    CONFIG_KEYS = [ :logger, :access_token, :client_id, :client_secret, :read_timeout, :open_timeout ]
 
     class << self
       attr_accessor *CONFIG_KEYS
@@ -17,27 +13,18 @@ module Thinkific
       def configure(config)
         config.stringify_keys!
         @logger = config['logger'] || DEFAULT_LOGGER
-        @access_token = config['access_token']
+        @base_url = config['base_url'] || 'https://api.thinkific.com/api/public/v1'
         @client_id = config['client_id'] if config['client_id'].present?
         @client_secret = config['client_secret'] if config['client_secret'].present?
-        @redirect_uri = config['redirect_uri'] if config['redirect_uri'].present?
         @read_timeout = config['read_timeout'] || config['timeout']
         @open_timeout = config['open_timeout'] || config['timeout']
-
-        unless access_token.present?
-          Thinkific::ConfigurationError.new('You must provide an access_token!')
-        end
-
-        if access_token.present?
-          Thinkific::Connection.headers('Authorization' => "Bearer #{access_token}")
-        end
 
         self
       end
 
       def reset!
         @logger = DEFAULT_LOGGER
-        @access_token = nil
+        @base_url = 'https://api.thinkific.com/api/public/v1'
         Thinkific::Connection.headers({})
       end
 
