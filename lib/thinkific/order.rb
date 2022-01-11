@@ -14,7 +14,7 @@ module Thinkific
         path, opts = [ORDERS_PATH, opts]
 
         response = Thinkific::Connection.get_json(path, opts)
-        opts[:page] ? response : response['items']
+        response['items']
       end
 
     end

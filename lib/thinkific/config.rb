@@ -5,7 +5,7 @@ module Thinkific
   class Config
 
     DEFAULT_LOGGER = Logger.new(nil)
-    CONFIG_KEYS = [ :logger, :access_token, :client_id, :client_secret, :read_timeout, :open_timeout ]
+    CONFIG_KEYS = [ :logger, :base_url, :client_id, :client_secret, :read_timeout, :open_timeout ]
 
     class << self
       attr_accessor *CONFIG_KEYS
