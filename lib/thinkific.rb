@@ -8,9 +8,11 @@ require 'httparty'
 require 'thinkific/version'
 require 'thinkific/exceptions'
 require 'thinkific/order'
+require 'thinkific/enrollment'
 require 'thinkific/config'
 require 'thinkific/connection'
 require 'thinkific/oauth'
+
 
 
 module Thinkific
