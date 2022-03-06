@@ -5,7 +5,7 @@ module Thinkific
   # {https://developers.thinkific.com/api/api-documentation/#/Enrollments}
   #
   class Enrollment
-    PER_PAGE = 25
+    PER_PAGE = 250
     ENROLLMENTS_PATH = "/enrollments?query[completed]=true"
 
     class << self

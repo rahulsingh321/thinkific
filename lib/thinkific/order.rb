@@ -5,7 +5,7 @@ module Thinkific
   # {https://developers.thinkific.com/api/api-documentation/#/Orders}
   #
   class Order
-    PER_PAGE = 25
+    PER_PAGE = 250
     ORDERS_PATH = "/orders"
 
     class << self
