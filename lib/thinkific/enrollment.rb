@@ -5,28 +5,32 @@ module Thinkific
   # {https://developers.thinkific.com/api/api-documentation/#/Enrollments}
   #
   class Enrollment
-    class << self
+    PER_PAGE = 25
+    ENROLLMENTS_PATH = "/enrollments?query[completed]=true"
 
+    class << self
       # {https://developers.thinkific.com/api/api-documentation/#/Enrollments/getEnrollments}
       def all(opts = {})
-        path, opts = [enrollment_path, opts]
+        path = endpoint
+        opts = opts
 
         response = Thinkific::Connection.get_json(path, opts)
+        return [] unless response["items"].any?
 
-        enrollments = []
-        page_number = 0
+        page_number = 1
+        enrollments = response["items"]
 
-        while page_number <= response['meta']['pagination']['total_pages']
-          response = Thinkific::Connection.get_json(enrollment_path(page_number), opts)
-          enrollments << response['items']
+        while page_number <= response["meta"]["pagination"]["total_pages"]
           page_number += 1
+          response = Thinkific::Connection.get_json(endpoint(page_number), opts)
+          enrollments += response["items"]
         end
 
-        return enrollments.flatten
+        enrollments
       end
 
-      def enrollment_path(page_number = 1)
-        "/enrollments?page=#{page_number}&limit=250&query[completed]=true"
+      def endpoint(page_number = 1)
+        ENROLLMENTS_PATH + "&page=#{page_number}&limit=#{PER_PAGE}"
       end
     end
   end
