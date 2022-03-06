@@ -14,7 +14,7 @@ module Thinkific
         response = Thinkific::Connection.get_json(path, opts)
 
         enrollments = []
-        page_number = 0
+        page_number = 1
 
         while page_number <= response['meta']['pagination']['total_pages']
           response = Thinkific::Connection.get_json(enrollment_path(page_number), opts)
