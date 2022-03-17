@@ -30,7 +30,7 @@ module Thinkific
       end
 
       def endpoint(page_number = 1)
-        ORDERS_PATH + "&page=#{page_number}&limit=#{PER_PAGE}"
+        ORDERS_PATH + "?page=#{page_number}&limit=#{PER_PAGE}"
       end
     end
   end
