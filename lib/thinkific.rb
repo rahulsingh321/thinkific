@@ -11,7 +11,6 @@ require "thinkific/admin/order"
 require "thinkific/admin/enrollment"
 require "thinkific/oauth/request"
 
-
 module Thinkific
   class Error < StandardError; end
   # Your code goes here...
