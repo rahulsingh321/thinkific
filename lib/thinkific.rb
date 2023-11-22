@@ -14,7 +14,6 @@ require 'thinkific/connection'
 require 'thinkific/oauth'
 
 
-
 module Thinkific
   class Error < StandardError; end
   # Your code goes here...
