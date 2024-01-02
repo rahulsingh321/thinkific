@@ -30,7 +30,6 @@ require "thinkific/admin/product_publish_requests"
 require "thinkific/admin/promotions"
 require "thinkific/admin/site_scripts"
 require "thinkific/admin/users"
-
 require "thinkific/oauth/request"
 
 module Thinkific
