@@ -2,7 +2,7 @@
 
 module Thinkific
   module Admin
-    class Enrollment
+    class CustomProfileFieldDefinition
       class << self
         include Thinkific::Admin::CommonOperations
       end
