@@ -1,18 +1,15 @@
 # frozen_string_literal: true
 
-require 'active_support'
-require 'active_support/core_ext'
-require 'httparty'
+require "httparty"
 
+require "thinkific/version"
+require "thinkific/exceptions"
+require "thinkific/config"
+require "thinkific/connection"
 
-require 'thinkific/version'
-require 'thinkific/exceptions'
-require 'thinkific/order'
-require 'thinkific/enrollment'
-require 'thinkific/config'
-require 'thinkific/connection'
-require 'thinkific/oauth'
-
+require "thinkific/admin/order"
+require "thinkific/admin/enrollment"
+require "thinkific/oauth/request"
 
 
 module Thinkific
@@ -20,9 +17,8 @@ module Thinkific
   # Your code goes here...
 end
 
-
 module Thinkific
-  def self.configure(config={})
+  def self.configure(config = {})
     Thinkific::Config.configure(config)
   end
 end
