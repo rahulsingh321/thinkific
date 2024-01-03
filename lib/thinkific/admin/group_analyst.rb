@@ -8,14 +8,12 @@ module Thinkific
 
         def create_groups(user_id, params)
           path = entity_name(user_id) + '/groups'
-
-          response = Thinkific::Connection.make_api_call(:post, path, params)
+          process_api_call(:post, path, params)
         end
 
         def delete_analyst(user_id, group_id)
           path = entity_name(user_id) + "/groups/#{group_id}"
-
-          response = Thinkific::Connection.make_api_call(:delete, path, params)
+          process_api_call(:delete, path, params)
         end
       end
     end

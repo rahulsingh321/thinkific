@@ -8,14 +8,16 @@ module Thinkific
 
         def create_products(id, params)
           path = entity_name(id)
-
-          Thinkific::Connection.make_api_call(:post, path, params)
+          process_api_call(:post, path, params)
         end
 
         def delete_products(id, params)
           path = entity_name(id)
+          process_api_call(:delete, path, params)
+        end
 
-          Thinkific::Connection.make_api_call(:delete, path, params)
+        def name
+          'CollectionMembership'
         end
       end
     end

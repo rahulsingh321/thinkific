@@ -8,8 +8,7 @@ module Thinkific
 
         def create_bulk_coupon(params)
           path = entity_name + "/bulk_create"
-
-          Thinkific::Connection.make_api_call(:get, path, params)
+          process_api_call(:post, path, params)
         end
       end
     end
