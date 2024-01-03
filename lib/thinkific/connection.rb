@@ -5,10 +5,9 @@ module Thinkific
     include HTTParty
 
     class << self
-      def make_api_call(action_name, path, opts)
-        url      = generate_url(action_name, path, opts)
-        response = public_send(action_name, url, body: opts.to_json, format: :json, read_timeout: read_timeout(opts),
-                                                 open_timeout: open_timeout(opts))
+      def make_api_call(action_name, path, params={})
+        url      = generate_url(path, params)
+        response = public_send(action_name, url, format: :json, read_timeout: read_timeout(params), open_timeout: open_timeout(params))
         log_request_and_response url, response
 
         raise Thinkific::RequestError, response unless response.success?
@@ -18,12 +17,12 @@ module Thinkific
 
       protected
 
-      def read_timeout(opts = {})
-        opts.delete(:read_timeout) || Thinkific::Config.read_timeout
+      def read_timeout(params = {})
+        params.delete(:read_timeout) || Thinkific::Config.read_timeout
       end
 
-      def open_timeout(opts = {})
-        opts.delete(:open_timeout) || Thinkific::Config.open_timeout
+      def open_timeout(params = {})
+        params.delete(:open_timeout) || Thinkific::Config.open_timeout
       end
 
       def handle_response(response)
@@ -32,9 +31,8 @@ module Thinkific
         response.parsed_response
       end
 
-      def generate_url(_action_name, path, _params = {}, options = {})
+      def generate_url(path, options)
         base_url = options[:base_url] || Thinkific::Config.base_url
-
         base_url + path
       end
 

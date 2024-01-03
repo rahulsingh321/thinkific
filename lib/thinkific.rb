@@ -7,6 +7,7 @@ require "thinkific/exceptions"
 require "thinkific/config"
 require "thinkific/connection"
 
+require "thinkific/admin/base"
 require "thinkific/admin/common_operations"
 require "thinkific/admin/bundle"
 require "thinkific/admin/categories"

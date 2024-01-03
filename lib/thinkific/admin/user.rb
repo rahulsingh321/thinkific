@@ -8,8 +8,7 @@ module Thinkific
 
         def authentications(id, provider, params = {})
           path = entity_name(id) + "authentications/#{provider}"
-
-          Thinkific::Connection.make_api_call(:get, path, params)
+          process_api_call(:get, path, params)
         end
       end
     end

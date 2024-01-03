@@ -4,76 +4,35 @@ module Thinkific
   module Admin
     module CommonOperations
       extend ActiveSupport::Concern
+      include Thinkific::Admin::Base
 
-      DEFAULT_PER_PAGE = 250
+      mattr_reader :params
 
-      def all(opts = {})
-        path = entity_name
-        opts = opts.with_indifferent_access
+      def list(id = nil, params = {})
+        @@params = params.with_indifferent_access
+        path     = entity_name(id, true)
 
-        response = Thinkific::Connection.make_api_call(:get, apply_pagination(path), opts)
-        return [] unless response["items"].any?
-
-        page_number = 1
-        records = response["items"]
-        while page_number <= response["meta"]["pagination"]["total_pages"]
-          page_number += 1
-          response = Thinkific::Connection.make_api_call(:get, apply_pagination(path, page_number), opts)
-          records += response["items"]
-        end
-
-        records
+        process_api_call(:get, path, params)
       end
 
-      def find_by_id(id)
+      def show(id)
         path = entity_name(id)
-
-        Thinkific::Connection.make_api_call(:get, path, {})
+        process_api_call(:get, path)
       end
 
       def create(params)
         path = entity_name
-
-        Thinkific::Connection.make_api_call(:post, path, params)
+        process_api_call(:post, path, params)
       end
 
       def update(id, params)
         path = entity_name(id)
-
-        Thinkific::Connection.make_api_call(:put, path, params)
+        process_api_call(:put, path, params)
       end
 
-      def delete(id, _params = {})
+      def delete(id)
         path = entity_name(id)
-
-        Thinkific::Connection.make_api_call(:delete, path, param)
-      end
-
-      def entity_name(id = nil)
-        class_name = name.split("::").last.tableize
-        class_name = class_names[class_name] || class_name
-
-        id.present? ? "/#{class_name}/#{id}" : "/#{class_name}"
-      end
-
-      def class_names
-        { "categories" => "collections", "category_memberships" => "collection_memberships" }
-      end
-
-      def apply_pagination(path, page_number = 1, params = {})
-        page_number = params[:page_number] || page_number
-        per_page	= params[:per_page] || DEFAULT_PER_PAGE
-        query	= params[:query]
-
-        path += "?page=#{page_number}&limit=#{per_page}"
-
-        if query.present?
-          query.each do |key, value|
-            path += "&query%5B#{key}%5D=#{value}"
-          end
-        end
-
-        path
+        process_api_call(:delete, path)
       end
     end
   end
