@@ -2,7 +2,7 @@
 
 module Thinkific
   module Admin
-    class Enrollment
+    class Instructor
       class << self
         include Thinkific::Admin::CommonOperations
       end

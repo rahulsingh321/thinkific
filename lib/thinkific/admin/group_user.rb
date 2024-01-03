@@ -2,7 +2,7 @@
 
 module Thinkific
   module Admin
-    class Enrollment
+    class GroupUser
       class << self
         include Thinkific::Admin::CommonOperations
       end

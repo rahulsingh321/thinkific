@@ -5,9 +5,10 @@ module Thinkific
     include HTTParty
 
     class << self
-      def get_json(path, opts)
-        url      = generate_url(path, opts)
-        response = get(url, format: :json, read_timeout: read_timeout(opts), open_timeout: open_timeout(opts))
+      def make_api_call(action_name, path, opts)
+        url      = generate_url(action_name, path, opts)
+        response = public_send(action_name, url, body: opts.to_json, format: :json, read_timeout: read_timeout(opts),
+                                                 open_timeout: open_timeout(opts))
         log_request_and_response url, response
 
         raise Thinkific::RequestError, response unless response.success?
@@ -31,24 +32,10 @@ module Thinkific
         response.parsed_response
       end
 
-      def generate_url(path, params = {}, options = {})
-        path = path.clone
-        params = params.clone
+      def generate_url(_action_name, path, _params = {}, options = {})
         base_url = options[:base_url] || Thinkific::Config.base_url
 
-        params.each do |k, v|
-          if path.match(":#{k}")
-            path.gsub!(":#{k}", CGI.escape(v.to_s))
-            params.delete(k)
-          end
-        end
-
-        query = params.map do |k, v|
-          v.is_a?(Array) ? v.map { |value| param_string(k, value) } : param_string(k, v)
-        end.join("&")
-
-        path += path.include?("?") ? "&" : "?" if query.present?
-        base_url + path + query
+        base_url + path
       end
 
       def log_request_and_response(uri, response, body = nil)
