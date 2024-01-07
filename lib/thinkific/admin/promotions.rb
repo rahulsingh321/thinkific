@@ -2,13 +2,13 @@
 
 module Thinkific
   module Admin
-    class Product
+    class Promotions
       class << self
         include Thinkific::Admin::CommonOperations
 
-        def list_related(id, params = {})
-          params[:custom_path] = '/related'
-          list(id, params)
+        def get_coupon(params = {})
+          path = entity_name + '/by_coupon'
+          process_api_call(:get, path, params)
         end
       end
     end

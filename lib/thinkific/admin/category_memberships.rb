@@ -2,7 +2,7 @@
 
 module Thinkific
   module Admin
-    class CategoryMembership
+    class CategoryMemberships
       class << self
         include Thinkific::Admin::CommonOperations
 
@@ -17,7 +17,7 @@ module Thinkific
         end
 
         def name
-          'CollectionMembership'
+          'CollectionMemberships'
         end
       end
     end

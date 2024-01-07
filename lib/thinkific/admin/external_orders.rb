@@ -2,7 +2,7 @@
 
 module Thinkific
   module Admin
-    class ExternalOrder
+    class ExternalOrders
       class << self
         include Thinkific::Admin::CommonOperations
 
@@ -11,7 +11,7 @@ module Thinkific
           process_api_call(:post, path, params)
         end
 
-        def purchase_transaction
+        def purchase_transaction(id, params = {})
           path = entity_name(id) + "/transactions/purchase"
           process_api_call(:post, path, params)
         end

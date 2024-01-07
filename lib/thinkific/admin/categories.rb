@@ -12,7 +12,7 @@ module Thinkific
         end
 
         def name
-          'Collection'
+          'Collections'
         end
       end
     end

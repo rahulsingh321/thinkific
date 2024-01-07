@@ -2,12 +2,12 @@
 
 module Thinkific
   module Admin
-    class Chapter
+    class Products
       class << self
         include Thinkific::Admin::CommonOperations
 
-        def list_contents(id, params = {})
-          params[:custom_path] = '/contents'
+        def list_related(id, params = {})
+          params[:custom_path] = '/related'
           list(id, params)
         end
       end

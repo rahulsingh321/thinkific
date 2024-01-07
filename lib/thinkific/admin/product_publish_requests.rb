@@ -2,7 +2,7 @@
 
 module Thinkific
   module Admin
-    class ProductPublishRequest
+    class ProductPublishRequests
       class << self
         include Thinkific::Admin::CommonOperations
 
