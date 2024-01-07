@@ -2,7 +2,7 @@
 
 module Thinkific
   module Admin
-    class Content
+    class SiteScripts
       class << self
         include Thinkific::Admin::CommonOperations
       end

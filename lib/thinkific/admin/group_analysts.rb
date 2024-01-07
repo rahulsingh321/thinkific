@@ -2,7 +2,7 @@
 
 module Thinkific
   module Admin
-    class GroupAnalyst
+    class GroupAnalysts
       class << self
         include Thinkific::Admin::CommonOperations
 

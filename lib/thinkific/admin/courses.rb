@@ -2,13 +2,13 @@
 
 module Thinkific
   module Admin
-    class Coupon
+    class Courses
       class << self
         include Thinkific::Admin::CommonOperations
 
-        def create_bulk_coupon(params)
-          path = entity_name + "/bulk_create"
-          process_api_call(:post, path, params)
+        def list_chapters(id, params = {})
+          params[:custom_path] = '/chapters'
+          list(id, params)
         end
       end
     end
