@@ -60,12 +60,12 @@ Or install it yourself as:
 
 ## Initialize
 
-You have to create **thinkific.rb** file in your initializer directory and then specify API key and subdomain of you Thinkific account. The config file looking like this.
+You have to create **thinkific.rb** file in your initializer directory and then specify client-id and secret-key of you Thinkific account. The config file looking like this.
 
 ```ruby
 Thinkific.config do |config|
-  config.subdomain = 'your-subdomain'
-  config.api_key   = 'your-api-key'
+  config.client_id = 'your-client-id'
+  config.secret_key   = 'your-secret-key'
 end
 ```
 
@@ -80,488 +80,360 @@ For detailed information about each parameter and its usage, please refer to the
 
 
 
-<a name="bundles"></a>
+## <a name="bundles" href="https://developers.thinkific.com/api/api-documentation/#/Bundles">Bundles</a>
+```ruby
 
-## Bundles - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Bundles)
+    # Retrieve a Bundles:
+    Thinkific::Admin::Bundles.show(ID)
 
-#### Retrieve a Bundles:
-```ruby
-Thinkific::Admin::Bundles.show(ID)
-```
+    # List all courses by Bundle ID:
+    Thinkific::Admin::Bundles.list_courses(ID, parameters)
 
-#### List all courses by Bundle ID:
-```ruby
-Thinkific::Admin::Bundles.list_courses(ID, parameters)
-```
+    # List all enrollments by Bundle ID:
+    Thinkific::Admin::Bundles.list_enrollments(ID, parameters)
 
-#### List all enrollments by Bundle ID:
-```ruby
-Thinkific::Admin::Bundles.list_enrollments(ID, parameters)
-```
+    # Create an Enrollment in a Bundle:
+    Thinkific::Admin::Bundles.create_enrollment(ID, parameters)
 
-#### Create an Enrollment in a Bundle:
-```ruby
-Thinkific::Admin::Bundles.create_enrollment(ID, parameters)
+    # Update an Enrollment in a Bundle:
+    Thinkific::Admin::Bundles.update_enrollment(ID, parameters)
+
 ```
+
 
-#### Update an Enrollment in a Bundle:
+## <a name="categories" href="https://developers.thinkific.com/api/api-documentation/#/Categories">Categories</a>
 ```ruby
-Thinkific::Admin::Bundles.update_enrollment(ID, parameters)
-```
 
+    # List all Categories:
+    Thinkific::Admin::Categories.list
 
-<a name="categories"></a>
+    # Retrieve a Categories:
+    Thinkific::Admin::Categories.show(ID)
 
-## Categories - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Categories)
+    # Create a Categories:
+    Thinkific::Admin::Categories.create(parameters)
 
-#### List all Categories:
-```ruby
-Thinkific::Admin::Categories.list
-```
+    # Update a Categories:
+    Thinkific::Admin::Categories.update(ID, parameters)
 
-#### Retrieve a Categories:
-```ruby
-Thinkific::Admin::Categories.show(ID)
-```
+    # Delete a Categories:
+    Thinkific::Admin::Categories.delete(ID)
 
-#### Create a Categories:
-```ruby
-Thinkific::Admin::Categories.create(parameters)
-```
+    # List all products by a Categories:
+    Thinkific::Admin::Categories.list_products(ID, parameters)
 
-#### Update a Categories:
-```ruby
-Thinkific::Admin::Categories.update(ID, parameters)
 ```
 
-#### Delete a Categories:
-```ruby
-Thinkific::Admin::Categories.delete(ID)
-```
 
-#### List all products by a Categories:
+## <a name="category-memberships" href="https://developers.thinkific.com/api/api-documentation/#/Category%20Memberships">Category Memberships</a>
 ```ruby
-Thinkific::Admin::Categories.list_products(ID, parameters)
-```
-
 
-<a name="category-memberships"></a>
+    # Create products in a Categories:
+    Thinkific::Admin::CategoryMembership.create_products(ID, parameters)
 
-## Category Memberships - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Category%20Memberships)
+    # Delete products from a Categories:
+    Thinkific::Admin::CategoryMembership.delete_products(ID, parameters)
 
-#### Create products in a Categories:
-```ruby
-Thinkific::Admin::CategoryMembership.create_products(ID, parameters)
 ```
+
 
-#### Delete products from a Categories:
+## <a name="chapters" href="https://developers.thinkific.com/api/api-documentation/#/Chapters">Chapters</a>
 ```ruby
-Thinkific::Admin::CategoryMembership.delete_products(ID, parameters)
-```
 
-<a name="chapters"></a>
+    # Retrieve a Chapters:
+    Thinkific::Admin::Chapters.show(ID)
 
-## Chapters - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Chapters)
+    # List all Contents by a Chapter ID:
+    Thinkific::Admin::Chapters.list_contents(ID, parameters)
 
-#### Retrieve a Chapters:
-```ruby
-Thinkific::Admin::Chapters.show(ID)
 ```
 
-#### List all Contents by a Chapter ID:
+
+## <a name="contents" href="https://developers.thinkific.com/api/api-documentation/#/Contents">Contents</a>
 ```ruby
-Thinkific::Admin::Chapters.list_contents(ID, parameters)
-```
 
-<a name="contents"></a>
+    # Retrieve a Contents by ID:
+    Thinkific::Admin::Contents.show(ID)
 
-## Contents - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Contents)
+```
+
 
-#### Retrieve a Contents by ID:
+## <a name="coupons" href="https://developers.thinkific.com/api/api-documentation/#/Coupons">Coupons</a>
 ```ruby
-Thinkific::Admin::Contents.show(ID)
-```
 
-<a name="coupons"></a>
+    # List all Coupons:
+    Thinkific::Admin::Coupons.list
 
-## Coupons - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Coupons)
+    # Retrieve a Coupons:
+    Thinkific::Admin::Coupons.show(ID)
 
-#### List all Coupons:
-```ruby
-Thinkific::Admin::Coupons.list
-```
+    # Create a Coupons:
+    Thinkific::Admin::Coupons.create(parameters)
 
-#### Retrieve a Coupons:
-```ruby
-Thinkific::Admin::Coupons.show(ID)
-```
+    # Bulk Create Coupons:
+    Thinkific::Admin::Coupons.create_bulk_coupon(parameters)
 
-#### Create a Coupons:
-```ruby
-Thinkific::Admin::Coupons.create(parameters)
-```
+    # Update a Coupons:
+    Thinkific::Admin::Coupons.update(ID, parameters)
 
-#### Bulk Create Coupons:
-```ruby
-Thinkific::Admin::Coupons.create_bulk_coupon(parameters)
-```
+    # Delete a Coupons:
+    Thinkific::Admin::Coupons.delete(ID)
 
-#### Update a Coupons:
-```ruby
-Thinkific::Admin::Coupons.update(ID, parameters)
 ```
+
 
-#### Delete a Coupons:
+## <a name="courses" href="https://developers.thinkific.com/api/api-documentation/#/Courses">Courses</a>
 ```ruby
-Thinkific::Admin::Coupons.delete(ID)
-```
 
+    # List all Courses:
+    Thinkific::Admin::Courses.list
 
-<a name="courses"></a>
+    # Retrieve a Courses:
+    Thinkific::Admin::Courses.show(ID)
 
-## Courses - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Courses)
+    # List Chapters by Course ID
+    Thinkific::Admin::Courses.list_chapters(ID, parameters)
 
-#### List all Courses:
-```ruby
-Thinkific::Admin::Courses.list
 ```
 
-#### Retrieve a Courses:
-```ruby
-Thinkific::Admin::Courses.show(ID)
-```
 
-#### List Chapters by Course ID
+## <a name="course-reviews" href="https://developers.thinkific.com/api/api-documentation/#/Course%20Reviews">Course Review</a>
 ```ruby
-Thinkific::Admin::Courses.list_chapters(ID, parameters)
-```
 
+    # List all Course Reviews:
+    Thinkific::Admin::CourseReviews.list
 
-<a name="course-reviews"></a>
+    # Retrieve a Course Reviews:
+    Thinkific::Admin::CourseReviews.show(ID)
 
-## Course Review - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Course%20Reviews)
+    # Create a Course Reviews:
+    Thinkific::Admin::CourseReviews.create(parameters)
 
-#### List all Course Reviews:
-```ruby
-Thinkific::Admin::CourseReviews.list
 ```
 
-#### Retrieve a Course Reviews:
-```ruby
-Thinkific::Admin::CourseReviews.show(ID)
-```
 
-#### Create a Course Reviews:
+## <a name="custom-profile-field-definitions" href="https://developers.thinkific.com/api/api-documentation/#/Custom%20Profile%20Field%20Definitions">Custom Profile Field Definitions</a>
 ```ruby
-Thinkific::Admin::CourseReviews.create(parameters)
-```
 
+    # List all Custom Profile Field Definition:
+    Thinkific::Admin::CustomProfileFieldDefinitions.list
 
-<a name="custom-profile-field-definitions"></a>
+```
 
-## Custom Profile Field Definitions - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Custom%20Profile%20Field%20Definitions)
 
-#### List all Custom Profile Field Definition:
+## <a name="enrollments" href="https://developers.thinkific.com/api/api-documentation/#/Enrollments">Enrollments</a>
 ```ruby
-Thinkific::Admin::CustomProfileFieldDefinitions.list
-```
 
+    # List all Enrollments:
+    Thinkific::Admin::Enrollments.list
 
-<a name="enrollments"></a>
+    # Retrieve an Enrollments:
+    Thinkific::Admin::Enrollments.show(ID)
 
-## Enrollments - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Enrollments)
+    # Create a Enrollments:
+    Thinkific::Admin::Enrollments.create(parameters)
 
-#### List all Enrollments:
-```ruby
-Thinkific::Admin::Enrollments.list
-```
+    # Update a Enrollments:
+    Thinkific::Admin::Enrollments.update(ID, parameters)
 
-#### Retrieve an Enrollments:
-```ruby
-Thinkific::Admin::Enrollments.show(ID)
 ```
 
-#### Create a Enrollments:
-```ruby
-Thinkific::Admin::Enrollments.create(parameters)
-```
 
-#### Update a Enrollments:
+## <a name="external-orders" href="https://developers.thinkific.com/api/api-documentation/#/External%20Orders">External Orders</a>
 ```ruby
-Thinkific::Admin::Enrollments.update(ID, parameters)
-```
 
+    # Create a External Order:
+    Thinkific::Admin::ExternalOrders.create(parameters)
 
-<a name="external-orders"></a>
+    # Create a Refund transaction in a External Order:
+    Thinkific::Admin::ExternalOrders.refund_transaction(ID, parameters)
 
-## External Orders - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/External%20Orders)
+    # Create a Purchase transaction in a External Order:
+    Thinkific::Admin::ExternalOrders.purchase_transaction(ID, parameters)
 
-#### Create a External Order:
-```ruby
-Thinkific::Admin::ExternalOrders.create(parameters)
 ```
 
-#### Create a Refund transaction in a External Order:
-```ruby
-Thinkific::Admin::ExternalOrders.refund_transaction(ID, parameters)
-```
 
-#### Create a Purchase transaction in a External Order:
+## <a name="groups" href="https://developers.thinkific.com/api/api-documentation/#/Groups">Groups</a>
 ```ruby
-Thinkific::Admin::ExternalOrders.purchase_transaction(ID, parameters)
-```
 
+    # List all Groups:
+    Thinkific::Admin::Groups.list
 
-<a name="groups"></a>
+    # Retrieve a Groups:
+    Thinkific::Admin::Groups.show(ID)
 
-## Groups - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Groups)
+    # Create a Groups:
+    Thinkific::Admin::Groups.create(parameters)
 
-#### List all Groups:
-```ruby
-Thinkific::Admin::Groups.list
-```
+    # Delete a Groups:
+    Thinkific::Admin::Groups.delete(ID)
 
-#### Retrieve a Groups:
-```ruby
-Thinkific::Admin::Groups.show(ID)
-```
+    # List Analysts by a Groups:
+    Thinkific::Admin::Groups.list_analysts(ID, parameters)
 
-#### Create a Groups:
-```ruby
-Thinkific::Admin::Groups.create(parameters)
-```
+    # Create Analysts in a Groups:
+    Thinkific::Admin::Groups.create_analysts(ID, parameters)
 
-#### Delete a Groups:
-```ruby
-Thinkific::Admin::Groups.delete(ID)
-```
+    # Delete an analyst from a group:
+    Thinkific::Admin::Groups.delete_analyst(ID)
 
-#### List Analysts by a Groups:
-```ruby
-Thinkific::Admin::Groups.list_analysts(ID, parameters)
 ```
 
-#### Create Analysts in a Groups:
-```ruby
-Thinkific::Admin::Groups.create_analysts(ID, parameters)
-```
 
-#### Delete an analyst from a group:
+## <a name="group-analysts" href="https://developers.thinkific.com/api/api-documentation/#/Group%20Analysts">Group Analysts</a>
 ```ruby
-Thinkific::Admin::Groups.delete_analyst(ID)
-```
 
-<a name="group-analysts"></a>
+    # Create Group-Analyst to a groups:
+    Thinkific::Admin::GroupAnalysts.create_groups(user_id, parameters)
 
-## Group Analysts - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Group%20Analysts)
+    # Delete Group-Analyst from a groups:
+    Thinkific::Admin::GroupAnalysts.delete_analyst(user_id, group_id)
 
-#### Create Group-Analyst to a groups:
-```ruby
-Thinkific::Admin::GroupAnalysts.create_groups(user_id, parameters)
 ```
+
 
-#### Delete Group-Analyst from a groups:
+## <a name="group-users" href="https://developers.thinkific.com/api/api-documentation/#/Group%20Users">Group Users</a>
 ```ruby
-Thinkific::Admin::GroupAnalysts.delete_analyst(user_id, group_id)
-```
 
+    # Create a User to existing Groups:
+    Thinkific::Admin::GroupUsers.create(parameters)
 
-<a name="group-users"></a>
+```
 
-## Group Users - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Group%20Users)
 
-#### Create a User to existing Groups:
+## <a name="instructors" href="https://developers.thinkific.com/api/api-documentation/#/Instructors">Instructors</a>
 ```ruby
-Thinkific::Admin::GroupUsers.create(parameters)
-```
 
+    # List all Instructors:
+    Thinkific::Admin::Instructors.list
 
-<a name="instructors"></a>
+    # Retrieve a Instructors:
+    Thinkific::Admin::Instructors.show(ID)
 
-## Instructors - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Instructors)
+    # Create a Instructors:
+    Thinkific::Admin::Instructors.create(parameters)
 
-#### List all Instructors:
-```ruby
-Thinkific::Admin::Instructors.list
-```
+    # Update a Instructors:
+    Thinkific::Admin::Instructors.update(ID, parameters)
 
-#### Retrieve a Instructors:
-```ruby
-Thinkific::Admin::Instructors.show(ID)
-```
+    # Delete a Instructors:
+    Thinkific::Admin::Instructors.delete(ID)
 
-#### Create a Instructors:
-```ruby
-Thinkific::Admin::Instructors.create(parameters)
 ```
 
-#### Update a Instructors:
-```ruby
-Thinkific::Admin::Instructors.update(ID, parameters)
-```
 
-#### Delete a Instructors:
+## <a name="orders" href="https://developers.thinkific.com/api/api-documentation/#/Orders">Orders</a>
 ```ruby
-Thinkific::Admin::Instructors.delete(ID)
-```
-
 
-<a name="orders"></a>
+    # List all Orders:
+    Thinkific::Admin::Orders.list
 
-## Orders - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Orders)
+    # Retrieve a Orders:
+    Thinkific::Admin::Orders.show(ID)
 
-#### List all Orders:
-```ruby
-Thinkific::Admin::Orders.list
 ```
+
 
-#### Retrieve a Orders:
+## <a name="product-publish-request" href="https://developers.thinkific.com/api/api-documentation/#/Product%20Publish%20Request">Product Publish Request</a>
 ```ruby
-Thinkific::Admin::Orders.show(ID)
-```
 
+    # List all Product Publish Request:
+    Thinkific::Admin::ProductPublishRequest.list
 
-<a name="product-publish-request"></a>
+    # Retrieve a Product Publish Request:
+    Thinkific::Admin::ProductPublishRequest.show(ID)
 
-## Product Publish Request - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Product%20Publish%20Request)
+    # Approve a Product Publish Request:
+    Thinkific::Admin::ProductPublishRequest.approve(ID, parameters)
 
-#### List all Product Publish Request:
-```ruby
-Thinkific::Admin::ProductPublishRequest.list
-```
+    # Deny a Product Publish Request:
+    Thinkific::Admin::ProductPublishRequest.deny(ID, parameters)
 
-#### Retrieve a Product Publish Request:
-```ruby
-Thinkific::Admin::ProductPublishRequest.show(ID)
 ```
 
-#### Approve a Product Publish Request:
-```ruby
-Thinkific::Admin::ProductPublishRequest.approve(ID, parameters)
-```
 
-#### Deny a Product Publish Request:
+## <a name="products" href="https://developers.thinkific.com/api/api-documentation/#/Products">Products</a>
 ```ruby
-Thinkific::Admin::ProductPublishRequest.deny(ID, parameters)
-```
 
+    # List all Products:
+    Thinkific::Admin::Products.list
 
-<a name="products"></a>
+    # Retrieve a Products:
+    Thinkific::Admin::Products.show(ID)
 
-## Products - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Products)
+    # List all Related Products:
+    Thinkific::Admin::Products.list_related(ID)
 
-#### List all Products:
-```ruby
-Thinkific::Admin::Products.list
 ```
 
-#### Retrieve a Products:
-```ruby
-Thinkific::Admin::Products.show(ID)
-```
 
-#### List all Related Products:
+## <a name="promotions" href="https://developers.thinkific.com/api/api-documentation/#/Promotions">Promotions</a>
 ```ruby
-Thinkific::Admin::Products.list_related(ID)
-```
 
+    # List all Promotions:
+    Thinkific::Admin::Promotions.list
 
-<a name="promotions"></a>
+    # Retrieve a Promotions:
+    Thinkific::Admin::Promotions.show(ID)
 
-## Promotions - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Promotions)
+    # Create a Promotions:
+    Thinkific::Admin::Promotions.create(parameters)
 
-#### List all Promotions:
-```ruby
-Thinkific::Admin::Promotions.list
-```
+    # Update a Promotions:
+    Thinkific::Admin::Promotions.update(ID, parameters)
 
-#### Retrieve a Promotions:
-```ruby
-Thinkific::Admin::Promotions.show(ID)
-```
+    # Delete a Promotions:
+    Thinkific::Admin::Promotions.delete(ID)
 
-#### Create a Promotions:
-```ruby
-Thinkific::Admin::Promotions.create(parameters)
-```
+    # Retrieve a Promotion by Coupon code:
+    Thinkific::Admin::Promotions.get_coupon(parameters)
 
-#### Update a Promotions:
-```ruby
-Thinkific::Admin::Promotions.update(ID, parameters)
 ```
 
-#### Delete a Promotions:
-```ruby
-Thinkific::Admin::Promotions.delete(ID)
-```
 
-#### Retrieve a Promotion by Coupon code:
+## <a name="site-scripts" href="https://developers.thinkific.com/api/api-documentation/#/Site%20Scripts">Site Scripts</a>
 ```ruby
-Thinkific::Admin::Promotions.get_coupon(parameters)
-```
 
-<a name="site-scripts"></a>
+    # List all Site script:
+    Thinkific::Admin::SiteScripts.list
 
-## Site Scripts - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Site%20Scripts)
+    # Retrieve a Site script:
+    Thinkific::Admin::SiteScripts.show(ID)
 
-#### List all Site script:
-```ruby
-Thinkific::Admin::SiteScripts.list
-```
-
-#### Retrieve a Site script:
-```ruby
-Thinkific::Admin::SiteScripts.show(ID)
-```
+    # Create a Site script:
+    Thinkific::Admin::SiteScripts.create(parameters)
 
-#### Create a Site script:
-```ruby
-Thinkific::Admin::SiteScripts.create(parameters)
-```
+    # Update a Site script:
+    Thinkific::Admin::SiteScripts.update(ID, parameters)
 
-#### Update a Site script:
-```ruby
-Thinkific::Admin::SiteScripts.update(ID, parameters)
-```
+    # Delete a Site script:
+    Thinkific::Admin::SiteScripts.delete(ID)
 
-#### Delete a Site script:
-```ruby
-Thinkific::Admin::SiteScripts.delete(ID)
 ```
 
 
-<a name="users"></a>
+## <a name="users" href="https://developers.thinkific.com/api/api-documentation/#/Users">Users</a>
+```ruby
 
-## Users - [Api Reference](https://developers.thinkific.com/api/api-documentation/#/Users)
+    # List all Users:
+    Thinkific::Admin::Users.list
 
-#### List all Users:
-```ruby
-Thinkific::Admin::Users.list
-```
+    # Retrieve a Users:
+    Thinkific::Admin::Users.show(ID)
 
-#### Retrieve a Users:
-```ruby
-Thinkific::Admin::Users.show(ID)
-```
+    # Create a Users:
+    Thinkific::Admin::Users.create(parameters)
 
-#### Create a Users:
-```ruby
-Thinkific::Admin::Users.create(parameters)
-```
+    # Update a Users:
+    Thinkific::Admin::Users.update(ID, parameters)
 
-#### Update a Users:
-```ruby
-Thinkific::Admin::Users.update(ID, parameters)
-```
+    # Delete a Users:
+    Thinkific::Admin::Users.delete(ID)
 
-#### Delete a Users:
-```ruby
-Thinkific::Admin::Users.delete(ID)
-```
+    # Retrieves a User authentication data identified by the id and provider:
+    Thinkific::Admin::Users.authentications(id, provider, parameters)
 
-#### Retrieves a User authentication data identified by the id and provider:
-```ruby
-Thinkific::Admin::Users.authentications(id, provider, parameters)
 ```
 
 
