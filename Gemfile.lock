@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     thinkific (0.1.0)
-      httparty
+      httparty (>= 0.17.3)
 
 GEM
   remote: https://rubygems.org/

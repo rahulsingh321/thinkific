@@ -35,7 +35,7 @@ Gem::Specification.new do |spec|
   # guide at: https://bundler.io/guides/creating_gem.html
 
   # Add runtime dependencies here
-  spec.add_runtime_dependency "httparty", ">=0.10.0"
+  spec.add_runtime_dependency "httparty", ">= 0.17.3"
 
   # Add development-only dependencies here
   spec.add_development_dependency("bundler")
