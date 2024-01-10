@@ -1,47 +1,52 @@
 # frozen_string_literal: true
 
-require "httparty"
+require 'thinkific/version'
+require 'thinkific/objectified_hash'
+require 'thinkific/configuration'
+require 'thinkific/error'
+require 'thinkific/paginated_response'
+require 'thinkific/request'
+require 'thinkific/api'
+require 'thinkific/client'
 
-require "thinkific/version"
-require "thinkific/exceptions"
-require "thinkific/config"
-require "thinkific/connection"
-
-require "thinkific/admin/base"
-require "thinkific/admin/common_operations"
-require "thinkific/admin/bundles"
-require "thinkific/admin/categories"
-require "thinkific/admin/category_memberships"
-require "thinkific/admin/chapters"
-require "thinkific/admin/contents"
-require "thinkific/admin/coupons"
-require "thinkific/admin/courses"
-require "thinkific/admin/course_reviews"
-require "thinkific/admin/custom_profile_field_definitions"
-require "thinkific/admin/enrollments"
-require "thinkific/admin/external_orders"
-require "thinkific/admin/groups"
-require "thinkific/admin/group_analysts"
-require "thinkific/admin/group_users"
-require "thinkific/admin/instructors"
-require "thinkific/admin/orders"
-require "thinkific/admin/products"
-require "thinkific/admin/product_publish_requests"
-require "thinkific/admin/promotions"
-require "thinkific/admin/site_scripts"
-require "thinkific/admin/users"
-require "thinkific/oauth/request"
 
 module Thinkific
-  class Error < StandardError; end
-  # Your code goes here...
-end
+  extend Configuration
 
-module Thinkific
-  def self.configure(config = {})
-    Thinkific::Config.configure(config)
+  # Alias for Thinkific::Client.new
+  #
+  # @return [Thinkific::Client]
+  def self.client(options = {})
+    Thinkific::Client.new(options)
+  end
+
+  if Gem::Version.new(RUBY_VERSION).release >= Gem::Version.new('3.0.0')
+    def self.method_missing(method, *args, **keywargs, &block)
+      return super unless client.respond_to?(method)
+
+      client.send(method, *args, **keywargs, &block)
+    end
+  else
+    def self.method_missing(method, *args, &block)
+      return super unless client.respond_to?(method)
+
+      client.send(method, *args, &block)
+    end
+  end
+
+  # Delegate to Thinkific::Client
+  def self.respond_to_missing?(method_name, include_private = false)
+    client.respond_to?(method_name) || super
+  end
+
+  # Returns an unsorted array of available client methods.
+  #
+  # @return [Array<Symbol>]
+  def self.actions
+    # rubocop:disable Layout/LineLength
+    hidden =
+      /endpoint|private_token|auth_token|user_agent|sudo|get|post|put|patch|\Adelete\z|validate\z|request_defaults|httparty/
+    # rubocop:enable Layout/LineLength
+    (Thinkific::Client.instance_methods - Object.methods).reject { |e| e[hidden] }
   end
 end
-
-# Alias the module for those looking to use the stylized name Thinkific
-Thinkific = Thinkific
