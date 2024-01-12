@@ -6,69 +6,27 @@ module Thinkific
     Dir[File.expand_path('client/*.rb', __dir__)].each { |f| require f }
 
     # Please keep in alphabetical order
-    include AccessRequests
-    include ApplicationSettings
-    include Avatar
-    include AwardEmojis
-    include Boards
-    include Branches
-    include BroadcastMessages
-    include BuildVariables
-    include Builds
-    include Commits
-    include ContainerRegistry
-    include Deployments
-    include Environments
-    include EpicIssues
-    include Epics
-    include Events
-    include Features
-    include GroupBadges
-    include GroupBoards
-    include GroupLabels
-    include GroupMilestones
+    include Bundles
+    include Categories
+    include CategoryMemberships
+    include Chapters
+    include Contents
+    include Coupons
+    include CourseReviews
+    include Courses
+    include CustomProfileFieldDefinitions
+    include Enrollments
+    include ExternalOrders
+    include GroupAnalysts
     include Groups
-    include IssueLinks
-    include Issues
-    include Jobs
-    include Keys
-    include Labels
-    include Lint
-    include Markdown
-    include MergeRequestApprovals
-    include MergeRequests
-    include Milestones
-    include Namespaces
-    include Notes
-    include Packages
-    include PipelineSchedules
-    include PipelineTriggers
-    include Pipelines
-    include ProjectBadges
-    include ProjectClusters
-    include ProjectReleaseLinks
-    include ProjectReleases
-    include Projects
-    include ProtectedTags
-    include RemoteMirrors
-    include Repositories
-    include RepositoryFiles
-    include RepositorySubmodules
-    include ResourceLabelEvents
-    include ResourceStateEvents
-    include Runners
-    include Search
-    include Services
-    include Sidekiq
-    include Snippets
-    include SystemHooks
-    include Tags
-    include Templates
-    include Todos
+    include GroupUsers
+    include Instructors
+    include Orders
+    include ProductPublishRequests
+    include Products
+    include Promotions
+    include SiteScripts
     include Users
-    include UserSnippets
-    include Versions
-    include Wikis
 
     # Text representation of the client, masking private token.
     #
