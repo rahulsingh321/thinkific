@@ -36,6 +36,35 @@ module Thinkific
         base_url + path
       end
 
+      def generate_url(path, params = {}, options = {})
+        path = path.clone
+        params = params.clone
+        base_url = options[:base_url] || Thinkific::Config.base_url
+
+        params.each do |k, v|
+          if path.match(":#{k}")
+            path.gsub!(":#{k}", CGI.escape(v.to_s))
+            params.delete(k)
+          end
+        end
+
+        query = params.map do |k,v|
+          v.is_a?(Array) ? v.map { |value| param_string(k,value) } : param_string(k,v)
+        end.join("&")
+
+        path += path.include?('?') ? '&' : '?' if query.present?
+        base_url + path + (query.present? ? query : "")
+      end
+
+      def param_string(key, value)
+        "#{key}=#{converted_value(value)}"
+      end
+
+
+      def converted_value(value)
+        CGI.escape(value.to_s)
+      end
+
       def log_request_and_response(uri, response, body = nil)
         Thinkific::Config.logger.info "Thinkific: #{uri}.\nBody: #{body}.\nResponse: #{response.code} #{response.body}"
       end
