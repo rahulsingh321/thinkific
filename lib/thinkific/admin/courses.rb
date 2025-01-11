@@ -8,7 +8,7 @@ module Thinkific
 
         def list_chapters(id, params = {})
           params[:custom_path] = '/chapters'
-          list(id, params)
+          list(id, params, '/chapters')
         end
       end
     end

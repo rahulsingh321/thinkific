@@ -9,13 +9,13 @@ module Thinkific
         Thinkific::Connection.make_api_call(action, path, params)
       end
 
-      def entity_name(id = nil, index = false)
+      def entity_name(id = nil, index = false, custom_path = nil)
         # retrieve path from class name
         path = name.split("::").last.tableize
         path = id.present? ? "/#{path}/#{id}" : "/#{path}"
 
         # initialize custom path
-        path = path + (params[:custom_path] || '')
+        path += custom_path if custom_path
 
         return apply_pagination(path) if index
 

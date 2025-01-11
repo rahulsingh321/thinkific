@@ -7,8 +7,7 @@ module Thinkific
         include Thinkific::Admin::CommonOperations
 
         def list_related(id, params = {})
-          params[:custom_path] = '/related'
-          list(id, params)
+          list(id, params, '/related')
         end
       end
     end

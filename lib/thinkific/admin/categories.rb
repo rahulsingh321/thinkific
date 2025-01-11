@@ -7,8 +7,7 @@ module Thinkific
         include Thinkific::Admin::CommonOperations
 
         def list_products(id, params = {})
-          params[:custom_path] = '/products'
-          list(id, params)
+          list(id, params, '/products')
         end
 
         def name

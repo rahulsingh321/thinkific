@@ -8,9 +8,9 @@ module Thinkific
 
       mattr_reader :params
 
-      def list(id = nil, params = {})
+      def list(id = nil, params = {}, custom_path = nil)
         @@params = params.with_indifferent_access
-        path     = entity_name(id, true)
+        path     = entity_name(id, true, custom_path)
 
         process_api_call(:get, path, params)
       end

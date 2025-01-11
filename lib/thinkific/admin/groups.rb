@@ -7,8 +7,7 @@ module Thinkific
         include Thinkific::Admin::CommonOperations
 
         def list_analysts(id, params = {})
-          params[:custom_path] = '/analysts'
-          list(id, params)
+          list(id, params, '/analysts')
         end
 
         def create_analysts(id, params)
