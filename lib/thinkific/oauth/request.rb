@@ -9,7 +9,7 @@ module Thinkific
 
       class << self
         def refresh(token, subdomain, params = {}, options = {})
-          oauth_post(token_url(subdomain), { granxt_type: "refresh_token", refresh_token: token }.merge(params),
+          oauth_post(token_url(subdomain), { grant_type: "refresh_token", refresh_token: token }.merge(params),
                      options)
         end
 
