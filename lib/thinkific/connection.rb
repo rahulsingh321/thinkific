@@ -10,9 +10,7 @@ module Thinkific
         response = public_send(action_name, url, format: :json, read_timeout: read_timeout(params), open_timeout: open_timeout(params))
         log_request_and_response url, response
 
-        raise Thinkific::RequestError, response unless response.success?
-
-        response.parsed_response
+        handle_response(response)
       end
 
       protected

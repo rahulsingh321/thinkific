@@ -7,7 +7,6 @@ module Thinkific
         include Thinkific::Admin::CommonOperations
 
         def list_chapters(id, params = {})
-          params[:custom_path] = '/chapters'
           list(id, params, '/chapters')
         end
       end
