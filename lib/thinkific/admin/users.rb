@@ -7,7 +7,7 @@ module Thinkific
         include Thinkific::Admin::CommonOperations
 
         def authentications(id, provider, params = {})
-          path = entity_name(id) + "authentications/#{provider}"
+          path = entity_name(id) + "/authentications/#{provider}"
           process_api_call(:get, path, params)
         end
       end

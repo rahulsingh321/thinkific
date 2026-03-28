@@ -21,7 +21,7 @@ module Thinkific
         def authorize_url(params = {})
           client_id    = params[:client_id] || Thinkific::Config.client_id
           redirect_uri = params[:redirect_uri]
-          state        = Base64.encode64(params[:state])
+          state        = Base64.strict_encode64(params[:state].to_s)
 
           # Replace subdomain with user input
           "https://subdomain.thinkific.com/oauth2/authorize?client_id=#{client_id}&response_type=code&redirect_uri=#{redirect_uri}&state=#{state}"

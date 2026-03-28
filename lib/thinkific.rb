@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
+require "base64"
+require "cgi"
 require "httparty"
+
+require "active_support/concern"
+require "active_support/core_ext/hash/indifferent_access"
+require "active_support/core_ext/hash/keys"
+require "active_support/core_ext/module/attribute_accessors"
+require "active_support/core_ext/object/blank"
+require "active_support/core_ext/string/inflections"
 
 require "thinkific/version"
 require "thinkific/exceptions"
@@ -42,6 +51,3 @@ module Thinkific
     Thinkific::Config.configure(config)
   end
 end
-
-# Alias the module for those looking to use the stylized name Thinkific
-Thinkific = Thinkific

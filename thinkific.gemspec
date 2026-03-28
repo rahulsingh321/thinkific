@@ -35,9 +35,11 @@ Gem::Specification.new do |spec|
   # guide at: https://bundler.io/guides/creating_gem.html
 
   # Add runtime dependencies here
+  spec.add_runtime_dependency "activesupport", ">= 6.1"
   spec.add_runtime_dependency "httparty", ">=0.10.0"
 
   # Add development-only dependencies here
   spec.add_development_dependency("bundler")
   spec.add_development_dependency("rake", "~> 13.0")
+  spec.add_development_dependency("rspec", "~> 3.12")
 end

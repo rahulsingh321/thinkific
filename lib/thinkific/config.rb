@@ -26,6 +26,10 @@ module Thinkific
       def reset!
         @logger = DEFAULT_LOGGER
         @base_url = "https://api.thinkific.com/api/public/v1"
+        @client_id = nil
+        @client_secret = nil
+        @read_timeout = nil
+        @open_timeout = nil
         Thinkific::Connection.headers({})
       end
 
