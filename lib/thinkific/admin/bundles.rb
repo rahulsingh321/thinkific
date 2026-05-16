@@ -7,12 +7,12 @@ module Thinkific
         include Thinkific::Admin::CommonOperations
 
         def list_courses(id, params = {})
-          path = entity_name(id) + "/courses"
+          params[:custom_path] = '/courses'
           list(id, params)
         end
 
         def list_enrollments(id, params = {})
-          path = entity_name(id) + "/enrollments"
+          params[:custom_path] = '/enrollments'
           list(id, params)
         end
 

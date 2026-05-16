@@ -6,10 +6,10 @@ module Thinkific
       extend ActiveSupport::Concern
       include Thinkific::Admin::Base
 
-      mattr_reader :params
+      attr_reader :params
 
       def list(id = nil, params = {})
-        @@params = params.with_indifferent_access
+        @params = params.with_indifferent_access
         path     = entity_name(id, true)
 
         process_api_call(:get, path, params)

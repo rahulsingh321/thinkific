@@ -10,12 +10,14 @@ module Thinkific
       end
 
       def entity_name(id = nil, index = false)
+        current_params = respond_to?(:params, true) && params ? params : {}
+
         # retrieve path from class name
         path = name.split("::").last.tableize
         path = id.present? ? "/#{path}/#{id}" : "/#{path}"
 
         # initialize custom path
-        path = path + (params[:custom_path] || '')
+        path = path + (current_params[:custom_path] || '')
 
         return apply_pagination(path) if index
 

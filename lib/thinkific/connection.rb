@@ -6,8 +6,17 @@ module Thinkific
 
     class << self
       def make_api_call(action_name, path, params={})
-        url      = generate_url(path, params)
-        response = public_send(action_name, url, format: :json, read_timeout: read_timeout(params), open_timeout: open_timeout(params))
+        request_params = params.dup
+        request_read_timeout = read_timeout(request_params)
+        request_open_timeout = open_timeout(request_params)
+        url = generate_url(path, request_params)
+        response = public_send(
+          action_name,
+          url,
+          format: :json,
+          read_timeout: request_read_timeout,
+          open_timeout: request_open_timeout
+        )
         log_request_and_response url, response
 
         raise Thinkific::RequestError, response unless response.success?
@@ -37,7 +46,7 @@ module Thinkific
       end
 
       def generate_url(path, params = {}, options = {})
-        path = path.clone
+        path = path.dup
         params = params.clone
         base_url = options[:base_url] || Thinkific::Config.base_url
 
@@ -59,7 +68,6 @@ module Thinkific
       def param_string(key, value)
         "#{key}=#{converted_value(value)}"
       end
-
 
       def converted_value(value)
         CGI.escape(value.to_s)
